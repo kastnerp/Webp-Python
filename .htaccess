@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # check if browser accepts webp
+  RewriteCond %{HTTP_ACCEPT} image/webp
+
+  # check if file is jpg or png
+  RewriteCond %{REQUEST_FILENAME} (.*)\.(jpe?g|png|gif)$
+
+  # check if corresponding webp file exists image.png -> image.webp
+  RewriteCond %1\.webp -f
+
+  # serve up webp instead
+  RewriteRule (.+)\.(jpe?g|png|gif)$ $1.webp [T=image/webp,E=accept:1]
+
+</IfModule>

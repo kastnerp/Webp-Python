@@ -1,0 +1,4 @@
+* * * * * cd /var/www/virtual/username/html/shop/images/; python3 png2webp.py
+
+# This will find all *.jpg, *.jpeg, *.png, and *.gifs and convert them into *.webp with 80% quality
+0 */6 * * * cd /var/www/virtual/username/html/shop/images/; find . -iname '*.jpg' -print | xargs -n1 -I{} sh -c 'convert -quality 80 "{}" "$(dirname {})/$(basename -s .jpg {}).webp";'; find . -iname '*.png' -print | xargs -n1 -I{} sh -c 'convert -quality 80 "{}" "$(dirname {})/$(basename -s .png {}).webp";'; find . -iname '*.gif' -print | xargs -n1 -I{} sh -c 'convert -quality 80 "{}" "$(dirname {})/$(basename -s .gif {}).webp";';find . -iname '*.jpeg' -print | xargs -n1 -I{} sh -c 'convert -quality 80 "{}" "$(dirname {})/$(basename -s .jpeg {}).webp";' >/dev/null 2>&1
